@@ -56,14 +56,13 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden dark">
-      {/* Background Video va Overlay `public/index.html` da */}
-      {/* <div className="fixed inset-0 bg-black/40 z-0"></div> */} {/* Bu qismni index.css da video filteri orqali qildim */}
+    <div className="relative min-h-screen flex items-start justify-start p-4 overflow-hidden dark">
 
-      <div className="relative z-10 w-full max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-6 border border-gray-700 backdrop-blur-md">
+<div className="relative z-10 w-full max-h-[690px]  overflow-hidden  max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-4 border border-gray-800 backdrop-blur-xs ">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        <div className="space-y-4">
+      <div className=' overflow-hidden '>
+          <div className="space-y-4 overflow-auto">
           <SettingSection
             label="backdrop-filter"
             isOn={backdropFilterOn}
@@ -89,9 +88,10 @@ function App() {
           >
             <TextureControls />
           </SettingSection>
-        </div>
-
         <CodePreview cssCode={generateCssCode()} />
+        </div>
+      </div>
+
       </div>
 
       {/* Preview Card - Endi to'g'ri joylashtiramiz */}

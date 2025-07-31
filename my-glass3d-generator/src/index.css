@@ -208,3 +208,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+.kurinmas::-webkit-scrollbar {
+  display: none;
+}
+
+
+.kurinmas{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -4,7 +4,7 @@ const Header = ({ activeTab, setActiveTab }) => {
   return (
     <div className="flex flex-col items-center mb-8">
       <div className="flex items-center space-x-2 text-white mb-4">
-        <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center text-lg font-bold">💎</div> {/* Logo */}
+
         <h1 className="text-3xl font-bold text-gray-100">glass3d generator</h1>
       </div>
       <p className="text-sm text-gray-400 text-center mb-6 max-w-sm">
