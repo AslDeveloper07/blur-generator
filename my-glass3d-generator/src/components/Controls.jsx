@@ -3,7 +3,6 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 
-// RangeSlider o'rniga
 export const FilterSlider = ({ label, value, min, max, step, onChange }) => {
   return (
     <div className="flex items-center gap-4 mb-4">
@@ -22,7 +21,6 @@ export const FilterSlider = ({ label, value, min, max, step, onChange }) => {
   );
 };
 
-// ColorPicker o'rniga
 export const ColorControls = ({ label, color, onChange }) => {
   const { h, s, l } = color;
 

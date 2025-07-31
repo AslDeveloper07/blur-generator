@@ -4,10 +4,10 @@ import { Switch } from "@/components/ui/switch";
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const SettingSection = ({ label, isOn, handleToggle, children }) => {
-  const [isOpen, setIsOpen] = React.useState(isOn); // Dastlabki holatda isOn ga qarab ochish/yopish
+  const [isOpen, setIsOpen] = React.useState(isOn); 
 
   React.useEffect(() => {
-    setIsOpen(isOn); // isOn o'zgarganda ochish/yopishni sinxronlashtirish
+    setIsOpen(isOn);
   }, [isOn]);
 
   const toggleOpen = () => setIsOpen(!isOpen);

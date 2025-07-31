@@ -15,16 +15,11 @@ function App() {
   const [cardColor, setCardColor] = useState({ h: 189, s: 80, l: 10 }); // HSL values
   const [textureOn, setTextureOn] = useState(false);
 
-  // Card stylesini dinamik hisoblash
   const cardStyle = {
     backdropFilter: backdropFilterOn ? `blur(${blur}px) brightness(${brightness}) saturate(${saturation})` : 'none',
-    // backgroundColor: `hsl(${cardColor.h}, ${cardColor.s}%, ${cardColor.l}%, ${colorOn ? 0.2 : 0})`, // Kartaning fon rangi
-    // Yuqoridagi komment qilingan qator o'rniga, Card komponenti ichida overlay ishlatamiz.
-    // rgba dan foydalanish to'g'riroq bo'lishi mumkin, chunki hamma brauzer HSL alfa kanalini bir xil qo'llamaydi.
-    // Lekin rasmda opacity 0 bo'lgani uchun, faqat blur va boshqa filterlar qoldiramiz.
+
   };
 
-  // CSS kodini generatsiya qilish
   const generateCssCode = () => {
     let filterCss = '';
     if (backdropFilterOn) {
@@ -33,7 +28,6 @@ function App() {
       filterCss = 'none';
     }
 
-    // CSS variables foydalanamiz
     const cssVars = `
   --filter-glass3d: ${filterCss};
   --color-glass3d-h: ${cardColor.h};
