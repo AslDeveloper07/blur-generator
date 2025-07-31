@@ -1,35 +1,106 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import SettingSection from './components/SettingSection';
+import { FilterSlider, ColorControls, TextureControls } from './components/Controls';
+import CodePreview from './components/CodePreview';
+import GlassCard from './components/GlassCard';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState('Video'); // Default tab
+  const [backdropFilterOn, setBackdropFilterOn] = useState(true);
+  const [blur, setBlur] = useState(70);
+  const [brightness, setBrightness] = useState(1.9);
+  const [saturation, setSaturation] = useState(2.5);
+  const [colorOn, setColorOn] = useState(true);
+  const [cardColor, setCardColor] = useState({ h: 189, s: 80, l: 10 }); // HSL values
+  const [textureOn, setTextureOn] = useState(false);
+
+  // Card stylesini dinamik hisoblash
+  const cardStyle = {
+    backdropFilter: backdropFilterOn ? `blur(${blur}px) brightness(${brightness}) saturate(${saturation})` : 'none',
+    // backgroundColor: `hsl(${cardColor.h}, ${cardColor.s}%, ${cardColor.l}%, ${colorOn ? 0.2 : 0})`, // Kartaning fon rangi
+    // Yuqoridagi komment qilingan qator o'rniga, Card komponenti ichida overlay ishlatamiz.
+    // rgba dan foydalanish to'g'riroq bo'lishi mumkin, chunki hamma brauzer HSL alfa kanalini bir xil qo'llamaydi.
+    // Lekin rasmda opacity 0 bo'lgani uchun, faqat blur va boshqa filterlar qoldiramiz.
+  };
+
+  // CSS kodini generatsiya qilish
+  const generateCssCode = () => {
+    let filterCss = '';
+    if (backdropFilterOn) {
+      filterCss += `blur(${blur}px) brightness(${brightness}) saturate(${saturation})`;
+    } else {
+      filterCss = 'none';
+    }
+
+    // CSS variables foydalanamiz
+    const cssVars = `
+  --filter-glass3d: ${filterCss};
+  --color-glass3d-h: ${cardColor.h};
+  --color-glass3d-s: ${cardColor.s}%;
+  --color-glass3d-l: ${cardColor.l}%;
+  --color-glass3d-opacity: ${colorOn ? 0.7 : 0};
+`;
+
+    const styleBlock = `
+.glass3d {
+  ${cssVars}
+  backdrop-filter: var(--filter-glass3d);
+  background-color: hsl(var(--color-glass3d-h), var(--color-glass3d-s), var(--color-glass3d-l), var(--color-glass3d-opacity));
+  /* Qo'shimcha stillar bu yerda bo'lishi mumkin, masalan border, shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px; /* Misol uchun */
+}
+`;
+    return styleBlock;
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden dark">
+      {/* Background Video va Overlay `public/index.html` da */}
+      {/* <div className="fixed inset-0 bg-black/40 z-0"></div> */} {/* Bu qismni index.css da video filteri orqali qildim */}
+
+      <div className="relative z-10 w-full max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-6 border border-gray-700 backdrop-blur-md">
+        <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+
+        <div className="space-y-4">
+          <SettingSection
+            label="backdrop-filter"
+            isOn={backdropFilterOn}
+            handleToggle={() => setBackdropFilterOn(!backdropFilterOn)}
+          >
+            <FilterSlider label="blur" value={blur} min={0} max={200} step={1} onChange={setBlur} />
+            <FilterSlider label="brightness" value={brightness} min={0} max={5} step={0.1} onChange={setBrightness} />
+            <FilterSlider label="saturation" value={saturation} min={0} max={10} step={0.1} onChange={setSaturation} />
+          </SettingSection>
+
+          <SettingSection
+            label="color"
+            isOn={colorOn}
+            handleToggle={() => setColorOn(!colorOn)}
+          >
+            <ColorControls label="color" color={cardColor} onChange={setCardColor} />
+          </SettingSection>
+
+          <SettingSection
+            label="texture"
+            isOn={textureOn}
+            handleToggle={() => setTextureOn(!textureOn)}
+          >
+            <TextureControls />
+          </SettingSection>
+        </div>
+
+        <CodePreview cssCode={generateCssCode()} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Preview Card - Endi to'g'ri joylashtiramiz */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%+150px)] z-0 lg:-translate-y-[calc(50%+200px)] lg:left-[calc(50%+250px)]">
+         <GlassCard style={cardStyle} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+    </div>
+  );
 }
 
-export default App
+export default App;
