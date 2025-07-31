@@ -58,11 +58,10 @@ function App() {
   return (
     <div className="relative min-h-screen flex items-start justify-start p-4 overflow-hidden dark">
 
-<div className="relative z-10 w-full max-h-[690px]  overflow-hidden  max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-4 border border-gray-800 backdrop-blur-xs ">
+<div className="relative z-10 w-full max-h-[690px] overflow-a max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-6 border border-gray-800 backdrop-blur-xs ">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className=' overflow-hidden '>
-          <div className="space-y-4 overflow-auto">
+        <div className="space-y-4 overflow-auto kurinmas">
           <SettingSection
             label="backdrop-filter"
             isOn={backdropFilterOn}
@@ -88,10 +87,9 @@ function App() {
           >
             <TextureControls />
           </SettingSection>
-        <CodePreview cssCode={generateCssCode()} />
         </div>
-      </div>
 
+        <CodePreview cssCode={generateCssCode()} />
       </div>
 
       {/* Preview Card - Endi to'g'ri joylashtiramiz */}
