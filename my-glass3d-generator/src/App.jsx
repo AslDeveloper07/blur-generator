@@ -56,9 +56,9 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-start justify-start p-4 overflow-hidden dark">
+    <div className="relative min-h-screen flex items-start justify-between p-4 overflow-hidden dark">
 
-<div className="relative z-10 w-full max-h-[690px] overflow-a max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-6 border border-gray-800 backdrop-blur-xs ">
+<div className="relative z-10 w-full max-h-[690px] overflow-auto kurinmas max-w-sm bg-gray-900/60 rounded-2xl shadow-2xl p-4 border border-gray-800 backdrop-blur-xs ">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
         <div className="space-y-4 overflow-auto kurinmas">
@@ -87,15 +87,14 @@ function App() {
           >
             <TextureControls />
           </SettingSection>
+        <CodePreview cssCode={generateCssCode()} />
         </div>
 
-        <CodePreview cssCode={generateCssCode()} />
       </div>
-
-      {/* Preview Card - Endi to'g'ri joylashtiramiz */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%+150px)] z-0 lg:-translate-y-[calc(50%+200px)] lg:left-[calc(50%+250px)]">
+      <div className="]">
          <GlassCard style={cardStyle} />
       </div>
+
 
     </div>
   );

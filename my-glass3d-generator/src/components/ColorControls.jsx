@@ -44,14 +44,14 @@ export const ColorControls = ({ label, color, onChange }) => {
       </div>
       <div className="space-y-4 pl-6">
         <div>
-          <Label className="block text-gray-400 text-sm mb-1">Hue</Label>
+          <Label className="block text-gray-400 text-sm ">Hue</Label>
           <Slider
             defaultValue={[h]}
             min={0}
             max={360}
             step={1}
             onValueChange={(val) => onChange({ ...color, h: val[0] })}
-            className="w-full"
+            className="w-full "
             // Hue Slider uchun gradient
             style={{
               '--ui-slider-track-background': 'linear-gradient(to right, #FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000)'
@@ -59,7 +59,7 @@ export const ColorControls = ({ label, color, onChange }) => {
           />
         </div>
         <div>
-          <Label className="block text-gray-400 text-sm mb-1">Saturation</Label>
+          <Label className="block text-gray-400 text-sm mb-5">Saturation</Label>
           <Slider
             defaultValue={[s]}
             min={0}
