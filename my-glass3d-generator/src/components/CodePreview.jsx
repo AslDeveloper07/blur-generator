@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from 'lucide-react';
-import { useCopyToClipboard } from '../lib/utils'; // utils.js ichiga joylashtiriladi
+import { useCopyToClipboard } from '../lib/utils';
 
 const CodePreview = ({ cssCode }) => {
   const [copiedText, copy] = useCopyToClipboard();
