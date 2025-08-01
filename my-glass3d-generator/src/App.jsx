@@ -74,13 +74,7 @@ function App() {
             <ColorControls label="color" color={cardColor} onChange={setCardColor} />
           </SettingSection>
 
-          <SettingSection
-            label="texture"
-            isOn={textureOn}
-            handleToggle={() => setTextureOn(!textureOn)}
-          >
-            <TextureControls />
-          </SettingSection>
+         
         <CodePreview cssCode={generateCssCode()} />
         </div>
 

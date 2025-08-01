@@ -4,7 +4,7 @@ import { Switch } from "@/components/ui/switch";
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const SettingSection = ({ label, isOn, handleToggle, children }) => {
-  const [isOpen, setIsOpen] = React.useState(isOn); 
+  const [isOpen, setIsOpen] = React.useState(isOn);
 
   React.useEffect(() => {
     setIsOpen(isOn);
